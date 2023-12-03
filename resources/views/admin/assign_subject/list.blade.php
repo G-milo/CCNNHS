@@ -11,7 +11,7 @@
             <h1>Assign Subject List</h1>
           </div>
           <div class="col-sm-6" style="text-align: right;">
-              <a href="{{ url('admin/assign_subject/add') }}" class="btn btn-primary">Assign Subject Add</a>
+              <a href="{{ url('admin/assign_subject/add') }}" class="btn btn-primary">Add New Assign Subject</a>
           </div>
 
           
@@ -35,9 +35,14 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="form-group col-md-3">
-                      <label>Name</label>
-                      <input type="text" class="form-control" value="{{ Request::get('name') }}" name="name" placeholder="Name">
+                      <label>Class Name</label>
+                      <input type="text" class="form-control" value="{{ Request::get('class_name') }}" name="class_name" placeholder="Class Name">
                     </div>
+                    <div class="form-group col-md-3">
+                      <label>Subject Name</label>
+                      <input type="text" class="form-control" value="{{ Request::get('subject_name') }}" name="subject_name" placeholder="Subject Name">
+                    </div>
+
                     <div class="form-group col-md-3">
                       <label>Date</label>
                       <input type="date" class="form-control" name="date" value="{{ Request::get('date') }}" placeholder="Date">  
@@ -79,7 +84,8 @@
                   <thead>
                     <tr>
                       <th>#</th>
-                      <th>Name</th>
+                      <th>Class Name</th>
+                      <th>Subject Name</th>
                       <th>Status</th>
                       <th>Created By</th>
                       <th>Created Date</th>
@@ -87,11 +93,31 @@
                     </tr>
                   </thead>
                   <tbody>
-        
+                       @foreach($getRecord as $value)
+                          <tr>
+                            <td>{{ $value->id }}</td>
+                            <td>{{ $value->class_name }}</td>
+                            <td>{{ $value->subject_name }}</td>
+                            <td>
+                              @if($value->status == 0)
+                                Active
+                              @else
+                                Inactive
+                              @endif
+                            </td>
+                            <td>{{ $value->created_by_name }}</td>
+                            <td>{{ date('d-m-Y H:i A', strtotime($value->created_at)) }}</td>
+                            <td>
+                              <a href="{{ url('admin/assign_subject/edit/' .$value->id) }}" class="btn btn-primary">Edit</a>
+                              <a href="{{ url('admin/assign_subject/edit_single/' .$value->id) }}" class="btn btn-primary">Edit Single</a>
+                              <a href="{{ url('admin/assign_subject/delete/' .$value->id) }}" class="btn btn-danger">Delete</a>
+                            </td>
+                          </tr>
+                      @endforeach
                   </tbody>
                 </table>
                 <div style="padding: 10px; float: right;">
-                
+                    {!! $getRecord->appends(Illuminate\Support\Facades\Request::except('page'))->links() !!}
                 </div>
 
               </div>

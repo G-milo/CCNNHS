@@ -29,13 +29,20 @@
                         <label>Subject Name</label>
                         <input type="text" class="form-control" name="name" required placeholder="Subject Name">
                     </div>
+                   <!--- <div class="form-group">
+                        <label>Subject Type</label>
+                        <select class="form-control" name="type" required>
+                            <option value="">Select Type</option>
+                            <option value="Theory">Theory</option>
+                            <option value="Practical">Practical</option>
+                        </select>
+                    </div> ----->
                     <div class="form-group">
                         <label>Status</label>
-                        <select class="form-control" name="status">
+                        <select class="form-control" name="status" required>
                             <option value="0">Active</option>
                             <option value="1">Inactive</option>
                         </select>
-
                     </div>
                   
                 </div>                            

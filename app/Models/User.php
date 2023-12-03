@@ -64,7 +64,7 @@ class User extends Authenticatable
                         $return = $return->whereDate('created_at','=', Request::get('date'));
                     }
         $return = $return ->orderBy('id', 'desc')
-                    ->paginate(3);
+                    ->paginate(10);
         
         return $return;
     }

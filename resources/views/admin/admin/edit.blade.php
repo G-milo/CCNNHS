@@ -36,7 +36,7 @@
                   <div class="form-group">
                     <label>Password</label>
                     <input type="text" class="form-control" name="password" placeholder="Password">
-                    <p>Do you want to add new password so please add new password</p>
+                    <p>Do you want to change password? Please add new password here.</p>
                   </div>
                   
                 </div>                            

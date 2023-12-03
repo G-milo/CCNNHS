@@ -9,7 +9,7 @@ use Hash;
 class AdminController extends Controller
 {
     public function list() {
-
+ 
         $data['getRecord'] = User::getAdmin();
         $data['header_title'] = "Admin List";
         return view('admin.admin.list', $data);
@@ -30,7 +30,7 @@ class AdminController extends Controller
         $user->name = trim($request->name);
         $user->email = trim($request->email);
         $user->password = Hash::make($request->password);
-        $user->user_type == 1;
+        $user->user_type = 1;
 
         $user->save();
 

@@ -9,6 +9,7 @@ use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\ClassSubjectController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\TeacherController;
 
 
 /*
@@ -43,12 +44,21 @@ Route::get('admin/dashboard', function () {
 Route::group(['middleware' => 'admin'], function() {
 
     Route::get('admin/dashboard', [DashboardController::class, 'dashboard']);
+
     Route::get('admin/admin/list', [AdminController::class, 'list']);
     Route::get('admin/admin/add', [AdminController::class, 'add']);
     Route::post('admin/admin/add', [AdminController::class, 'insert']);
     Route::get('admin/admin/edit/{id}', [AdminController::class, 'edit']);
     Route::post('admin/admin/edit/{id}', [AdminController::class, 'update']);
     Route::get('admin/admin/delete/{id}', [AdminController::class, 'delete']);
+
+    //teacher
+    Route::get('admin/teacher/list', [TeacherController::class, 'list']);
+    Route::get('admin/teacher/add', [TeacherController::class, 'add']);
+    Route::post('admin/teacher/add', [TeacherController::class, 'insert']);
+    Route::get('admin/teacher/edit/{id}', [TeacherController::class, 'edit']);
+    Route::post('admin/teacher/edit/{id}', [TeacherController::class, 'update']);
+    Route::get('admin/teacher/delete/{id}', [TeacherController::class, 'delete']);
 
     //student
 
@@ -59,15 +69,30 @@ Route::group(['middleware' => 'admin'], function() {
     // class url
     Route::get('admin/class/list', [ClassController::class, 'list']);
     Route::get('admin/class/add', [ClassController::class, 'add']);
+    Route::post('admin/class/add', [ClassController::class, 'insert']);
+    Route::get('admin/class/edit/{id}', [ClassController::class, 'edit']);
+    Route::post('admin/class/edit/{id}', [ClassController::class, 'update']);
+    Route::get('admin/class/delete/{id}', [ClassController::class, 'delete']);
 
 
     // subject url
     Route::get('admin/subject/list', [SubjectController::class, 'list']);
     Route::get('admin/subject/add', [SubjectController::class, 'add']);
+    Route::post('admin/subject/add', [subjectController::class, 'insert']);
+    Route::get('admin/subject/edit/{id}', [subjectController::class, 'edit']);
+    Route::post('admin/subject/edit/{id}', [subjectController::class, 'update']);
+    Route::get('admin/subject/delete/{id}', [subjectController::class, 'delete']);
 
     // assign_subject url
     Route::get('admin/assign_subject/list', [ClassSubjectController::class, 'list']);
     Route::get('admin/assign_subject/add', [ClassSubjectController::class, 'add']);
+    Route::post('admin/assign_subject/add', [ClassSubjectController::class, 'insert']);
+    Route::get('admin/assign_subject/edit/{id}', [ClassSubjectController::class, 'edit']);
+    Route::post('admin/assign_subject/edit/{id}', [ClassSubjectController::class, 'update']);
+    Route::get('admin/assign_subject/delete/{id}', [ClassSubjectController::class, 'delete']);
+    Route::get('admin/assign_subject/edit_single/{id}', [ClassSubjectController::class, 'edit_single']);
+    Route::post('admin/assign_subject/edit_single/{id}', [ClassSubjectController::class, 'update_single']);
+
 
     //change pass
     Route::get('admin/change_password', [UserController::class, 'change_password']);
